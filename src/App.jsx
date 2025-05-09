@@ -1,5 +1,5 @@
 // App.jsx
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import Sidebar from './components/Sidebar'
 import Home from './sections/Home'
@@ -21,6 +21,29 @@ const sections = {
 function App() {
   const [currentSection, setCurrentSection] = useState('home')
   const [isSidebarOpen, setIsSidebarOpen] = useState(false)
+
+  useEffect(() => {
+    // Check if window is defined (for SSR)
+    if (typeof window !== 'undefined') {
+      // Set sidebar to open by default on desktop
+      const handleResize = () => {
+        if (window.innerWidth >= 768) {
+          setIsSidebarOpen(true)
+        } else {
+          setIsSidebarOpen(false)
+        }
+      }
+      
+      // Set initial state
+      handleResize()
+      
+      // Add event listener
+      window.addEventListener('resize', handleResize)
+      
+      // Cleanup
+      return () => window.removeEventListener('resize', handleResize)
+    }
+  }, [])
 
   return (
     <div className="flex h-screen bg-gradient-to-br from-gray-900 via-purple-900 to-gray-900 overflow-hidden">

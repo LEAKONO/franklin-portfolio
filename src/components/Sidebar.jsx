@@ -26,7 +26,9 @@ export default function Sidebar({ currentSection, setCurrentSection, isOpen, set
       {/* Sidebar */}
       <motion.div 
         initial={{ x: -300 }}
-        animate={{ x: isOpen ? 0 : -300 }}
+        animate={{ 
+          x: isOpen ? 0 : window.innerWidth < 768 ? -300 : 0 
+        }}
         transition={{ type: 'spring', stiffness: 100 }}
         className="fixed md:relative z-40 h-full w-64 bg-gray-800 shadow-xl"
       >
@@ -43,7 +45,9 @@ export default function Sidebar({ currentSection, setCurrentSection, isOpen, set
                   <button
                     onClick={() => {
                       setCurrentSection(item.id)
-                      setIsOpen(false)
+                      if (window.innerWidth < 768) {
+                        setIsOpen(false)
+                      }
                     }}
                     className={`flex items-center w-full p-3 rounded-lg transition-all ${
                       currentSection === item.id
