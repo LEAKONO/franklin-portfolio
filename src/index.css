@@ -1,3 +1,48 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Animation classes */
+.fade-in {
+  animation: fadeIn 0.5s ease-out forwards;
+  opacity: 0; /* Start invisible for fade-in */
+}
+
+@keyframes fadeIn {
+  to { opacity: 1; }
+}
+
+/* Animation classes */
+.service-card {
+  @apply relative p-6 bg-gray-800/50 rounded-xl border border-gray-700;
+  animation: fadeIn 0.5s ease-out forwards;
+  opacity: 0;
+}
+
+@keyframes fadeIn {
+  to { opacity: 1; }
+}
+
+.service-card:hover {
+  @apply border-purple-500/50;
+  transform: translateY(-5px);
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.gradient-text {
+  @apply text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-blue-400;
+}
+
+.gradient-border {
+  @apply absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-purple-500 to-blue-500;
+}
+
+.icon-container {
+  @apply mb-6 p-4 rounded-full text-white text-3xl;
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}

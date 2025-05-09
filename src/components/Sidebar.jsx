@@ -18,7 +18,7 @@ export default function Sidebar({ currentSection, setCurrentSection, isOpen, set
       {/* Mobile Menu Button */}
       <button 
         onClick={() => setIsOpen(!isOpen)}
-        className="fixed top-4 left-4 z-50 md:hidden p-2 rounded-full bg-purple-700 text-white"
+        className="fixed top-4 right-4 z-50 md:hidden p-2 rounded-full bg-purple-700 text-white"
       >
         {isOpen ? <FiX size={24} /> : <FiMenu size={24} />}
       </button>
@@ -32,14 +32,15 @@ export default function Sidebar({ currentSection, setCurrentSection, isOpen, set
         transition={{ type: 'spring', stiffness: 100 }}
         className="fixed md:relative z-40 h-full w-64 bg-gray-800 shadow-xl"
       >
-        <div className="p-8 flex flex-col h-full">
-          <div className="mb-12">
+        <div className="p-6 flex flex-col h-full">
+          {/* Header section */}
+          <div className="mb-6">
             <h1 className="text-2xl font-bold text-white">Franklin M. Murianki</h1>
-            <p className="text-purple-300">Peacebuilder & Tech Innovator</p>
+            <p className="text-purple-300 mt-1">Technology & Peace Advocate</p>
           </div>
           
           <nav className="flex-1">
-            <ul className="space-y-4">
+            <ul className="space-y-3">
               {navItems.map((item) => (
                 <li key={item.id}>
                   <button
@@ -63,7 +64,7 @@ export default function Sidebar({ currentSection, setCurrentSection, isOpen, set
             </ul>
           </nav>
           
-          <div className="mt-auto pt-8 border-t border-gray-700">
+          <div className="mt-auto pt-6 border-t border-gray-700">
             <p className="text-gray-400 text-sm">© 2024 Franklin M. Murianki</p>
           </div>
         </div>
