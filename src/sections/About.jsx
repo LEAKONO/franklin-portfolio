@@ -106,13 +106,6 @@ export default function About() {
               variants={item}
               className="flex flex-wrap gap-4"
             >
-              <motion.button
-                whileHover={{ y: -3, scale: 1.03 }}
-                whileTap={{ scale: 0.98 }}
-                className="px-6 py-3 bg-gradient-to-r from-purple-600 to-blue-600 rounded-lg text-white font-medium shadow-lg shadow-purple-500/30"
-              >
-                Download Full CV
-              </motion.button>
             </motion.div>
           </motion.div>
 
