@@ -1,7 +1,8 @@
 // sections/Home.jsx
 import { motion } from 'framer-motion'
 import FloatingElements from '../components/FloatingElements'
-import profileImage from '../assets/images/profile.jpeg'
+import profileImage from '../assets/images/francis.jpeg'
+import videoBg from '../assets/images/frank.mp4'
 import { useEffect, useState } from 'react'
 
 export default function Home() {
@@ -41,7 +42,6 @@ export default function Home() {
     }
   }
 
-  // Continuous firework particle animation
   const Particle = ({ color, size, delay, position }) => {
     const x = position?.x || Math.random() * 100 - 50
     const y = position?.y || Math.random() * 100 - 50
@@ -73,7 +73,6 @@ export default function Home() {
     )
   }
 
-  // Typing animation for name
   const TypingText = ({ text }) => {
     const [displayText, setDisplayText] = useState('')
     const [currentIndex, setCurrentIndex] = useState(0)
@@ -83,7 +82,7 @@ export default function Home() {
         const timeout = setTimeout(() => {
           setDisplayText(prev => prev + text[currentIndex])
           setCurrentIndex(prev => prev + 1)
-        }, 100 + Math.random() * 50) // Random typing speed for natural feel
+        }, 100 + Math.random() * 50)
 
         return () => clearTimeout(timeout)
       } else {
@@ -105,10 +104,27 @@ export default function Home() {
 
   return (
     <div className="relative min-h-[calc(100vh-4rem)] flex items-center overflow-hidden">
-      {/* Enhanced floating elements with continuous fireworks */}
+      {/* Enhanced Video Background */}
+      <div className="absolute inset-0 z-0 overflow-hidden">
+        <motion.video
+          autoPlay
+          loop
+          //muted
+          playsInline
+          className="w-full h-full object-cover opacity-60 brightness-110"
+          initial={{ opacity: 0.5 }}
+          animate={{ opacity: 0.7 }}
+          transition={{ duration: 8, repeat: Infinity, repeatType: "reverse" }}
+        >
+          <source src={videoBg} type="video/mp4" />
+          Your browser does not support the video tag.
+        </motion.video>
+        <div className="absolute inset-0 bg-gradient-to-br from-gray-900/30 to-purple-900/15"></div>
+      </div>
+
+      {/* Rest of your existing content */}
       <FloatingElements />
       
-      {/* Continuous firework particles in multiple locations */}
       <div className="absolute top-1/4 left-1/4 w-full h-full">
         {[...Array(8)].map((_, i) => (
           <Particle 
@@ -133,11 +149,9 @@ export default function Home() {
         ))}
       </div>
       
-      {/* Gradient background elements */}
       <div className="absolute top-1/4 -left-20 w-96 h-96 bg-purple-600 rounded-full filter blur-[150px] opacity-20"></div>
       <div className="absolute bottom-1/4 -right-20 w-96 h-96 bg-blue-600 rounded-full filter blur-[150px] opacity-20"></div>
       
-      {/* Main content */}
       <div className="relative z-10 w-full px-4 md:px-8 mx-auto max-w-7xl">
         <motion.div
           variants={container}
@@ -145,7 +159,6 @@ export default function Home() {
           animate="visible"
           className="grid lg:grid-cols-2 gap-8 md:gap-12 items-center"
         >
-          {/* Text content */}
           <div className="overflow-hidden order-2 lg:order-1">
             <motion.h1 variants={item} className="text-4xl md:text-6xl font-bold text-white mb-6">
               <TypingText text="Franklin Mwirigi Murianki" />
@@ -222,13 +235,11 @@ export default function Home() {
             </motion.div>
           </div>
 
-          {/* Profile image with enhanced animations */}
           <motion.div 
             variants={item}
             className="relative flex justify-center mt-8 lg:mt-0 order-1 lg:order-2"
           >
             <div className="relative w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96">
-              {/* Outer animated ring */}
               <motion.div
                 animate={{
                   rotate: 360,
@@ -249,7 +260,6 @@ export default function Home() {
                 className="absolute inset-0 border-4 border-transparent border-t-purple-500 border-r-blue-500 rounded-full"
               ></motion.div>
               
-              {/* Inner ring with pulsing effect */}
               <motion.div
                 animate={{
                   scale: [1, 1.02, 1],
@@ -263,7 +273,6 @@ export default function Home() {
                 className="absolute inset-2 md:inset-4 lg:inset-6 border-2 border-purple-400/30 rounded-full"
               ></motion.div>
               
-              {/* Profile image with glow effect when typing completes */}
               <motion.div
                 whileHover={{ scale: 1.03 }}
                 animate={{
@@ -287,7 +296,6 @@ export default function Home() {
                 />
               </motion.div>
               
-              {/* Animated badges */}
               <motion.div
                 animate={{
                   y: [0, -15, 0],
@@ -323,7 +331,6 @@ export default function Home() {
                 <div className="text-white font-medium text-xs md:text-sm">Peacekeeping</div>
               </motion.div>
               
-              {/* Floating tech icons around the image */}
               {!isMobile && (
                 <>
                   <motion.div
@@ -368,7 +375,6 @@ export default function Home() {
         </motion.div>
       </div>
       
-      {/* Subtle grid overlay for professional look */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="h-full w-full bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]"></div>
       </div>
